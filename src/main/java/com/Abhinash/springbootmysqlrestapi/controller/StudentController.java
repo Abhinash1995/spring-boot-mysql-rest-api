@@ -27,26 +27,26 @@ public class StudentController {
         return studentService.getAllStudent();
     }
 
-    @PostMapping("/students")
+    @PostMapping("/student")
     public Student saveStudent(@Valid @RequestBody Student student) {
         return studentService.saveStudent(student);
     }
 
-    @GetMapping("/students/{id}")
+    @GetMapping("/student/{id}")
     public Student getStudentById(@PathVariable(value = "id") Long studentId) {
         return studentRepos.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student", "id", studentId));
     }
 
-    @PutMapping("/notes/{id}")
+    @PutMapping("/student/{id}")
     public Student updateStudent(@PathVariable(value = "id") Long studentId,
-                                 @Valid @RequestBody Student student) {
+                           @Valid @RequestBody Student student) {
 
-        return studentService.updateStudentDetails(studentId, student);
+        return studentService.updateStudentDetails(studentId,student);
     }
 
 
-    @DeleteMapping("/notes/{id}")
+    @DeleteMapping("/student/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long studentId) {
         Student student = studentRepos.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student Not found with  ", "id", studentId));
